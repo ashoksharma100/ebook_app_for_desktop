@@ -1,0 +1,243 @@
+.info-icon-wrap {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+    .sidebar-wrapper-container {
+        padding: 7px;
+    }
+    .audioicon {
+        width: 30px;
+        height: 30px;
+        font-size: 17px;
+        line-height: 30px;
+        margin: 0px 0px 0px 9px;
+    }
+    .panel-app > .panel-heading {
+        font-size: 23px;
+    }
+    #data-speech {
+        font-size: 18px;
+    }
+    .heading-info {
+        font-size: 20px;
+        margin-top: 0px;
+    }
+    .desc-info {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+    .words li a {
+        font-size: 18px;
+    }
+    .search-bar.pull-left .form-control {
+        padding: 0px;
+        font-size: 15px;
+    }
+    .favourite-container .fig-caption,
+    .recent_file-container .fig-caption {
+        font-size: 11px;
+    }
+    .search-bar {
+        width: 55%;
+        float: none;
+        margin-bottom: 10px;
+    }
+    button.menu-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 40px;
+    }
+    button.menu-icon span {
+        font-size: 12px;
+    }
+    .fab-menu .nav-tabs > li > a {
+        font-size: 11px;
+    }
+    .fab-menu .nav-tabs > li > a span {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+    }
+    .fab-menu {
+        min-width: initial;
+        width: 66px;
+    }
+    .fab-menu .nav-tabs {
+        padding-top: 20px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .search-bar {
+        width: 100%;
+    }
+    .favicon span br {
+        display: none;
+    }
+    .words-section {
+        height: calc(100% - 146px);
+    }
+    .word_img img {
+        width: 100%;
+    }
+    #frame-body .panel {
+        margin-bottom: 0;
+    }
+    #frame-body #page-content-wrapper {
+        height: auto;
+    }
+    #frame-body .content-data {
+        height: auto;
+        padding-bottom: 0px;
+    }
+    #frame-body .container-fluid.height-100 {
+        height: auto;
+    }
+    #frame-body .full-height .height-40 {
+        height: auto;
+    }
+    #frame-body .full-height .height-100 {
+        height: auto;
+    }
+    #frame-body .panel-body {
+        height: auto !important;
+    }
+    #frame-body .word-info.height-40 {
+        height: auto;
+    }
+    #data-speech {
+        display: block;
+    }
+    .wrap_button_mobile {
+        display: block;
+        padding: 10px 0 0px 0px;
+    }
+    #audio-recorder-modal .btn-default {
+        font-size: 18px;
+        padding: 2px 7px;
+    }
+    #audio-selection-bar {
+        margin-bottom: 20px;
+    }
+    button#audio-user {
+        float: left;
+    }
+    .modal-content {
+        margin: 30px auto 0;
+        width: 93%;
+    }
+}
+@media (max-width: 768px) {
+  #sidebar-wrapper {
+    overflow: hidden;
+  }
+  .sidebar-top .top-icon {
+      float: none !important;
+      display: inline-block;
+      text-align: center;
+      width: 23%;
+  }
+  div#info-icon-top .list-sp-icon {
+      background: red;
+      width: 40px;
+      height: 40px;
+      margin: auto;
+      display: block;
+      background: #ffe000;
+      color: #5c2b10;
+      margin: auto;
+      height: 30px;
+      width: 30px;
+      text-align: center;
+      line-height: 29px;
+      border: 1px #5c2b10 groove;
+      border-radius: 100%;
+      text-decoration: none;
+      box-shadow: 0px 0px 0px 3px #fa7500;
+      border-style: dashed;
+      text-shadow: none;
+      font-size: 18px;
+  }
+  .top-icon p.fig-caption {
+      color: #FFF;
+      margin: 0;
+      text-shadow: 1px 1px 1px black;
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      font-size: 13px;
+  }
+
+  .info-icon-wrap {
+    display: inline-block;
+  }
+
+  .fab-menu {
+    display: none;
+  }
+  
+  span.lg-close.lg-icon {
+      position: relative;
+      top: 20px;
+      right: 20px;
+  }
+
+  ul.letters li a {
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+  }
+
+  ul.letters li {
+      height: 45px;
+      width: 45px;
+      padding: 0px;
+  }
+
+  .letters-container {
+      width: 77px;
+	  padding: 11px;
+  }
+
+  ul.letters li a {
+      font-size: 20px;
+  }
+
+  .words-container {
+      margin-left: 81px;
+  } 
+
+  #frame-body {
+    display: none;
+  }
+
+  .favicon {
+    float: none;
+  }
+ 
+  #data-word {
+      margin: 0px 0px 20px 0px;
+      display: block;
+  }
+
+  #data-speech {
+      margin-bottom: 20px;
+  }
+
+  .audio-selection {
+      max-width: 160px;
+      width: 100%;
+  }
+
+  #add_fav {
+      margin-top: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .video-progress-top {
+    display: none;
+  }
+}

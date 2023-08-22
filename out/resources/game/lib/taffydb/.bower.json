@@ -1,0 +1,14 @@
+{
+  "name": "taffydb",
+  "homepage": "https://github.com/typicaljoe/taffydb",
+  "_release": "c3e126e09b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c3e126e09b75352d981b1ee841f5ffde71c536e4"
+  },
+  "_source": "https://github.com/typicaljoe/taffydb.git",
+  "_target": "*",
+  "_originalSource": "taffydb",
+  "_direct": true
+}

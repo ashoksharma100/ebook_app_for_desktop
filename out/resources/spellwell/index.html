@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Saraswati_SpellXplore_Game</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
+	
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+   
+  </head>
+  <body>
+  <!-- splash screen -->
+    <div class="wrapper splashscreen" id="splashScreen" style="display:block">
+		<div class="gameScreen"><img src="assets/images/gameName.png" class="img-responsive"/></div>
+		 <!-- Fixed navbar -->
+		<div class="loading">
+			<img src="assets/images/load.gif" class="img-responsive"/>
+		</div>
+	
+	</div>
+	<!-- login screen -->
+	<div class="wrapper loginscreen" id="loginScreen" style="display:none">
+		 <!--<div class="inputdiv">
+			<input type="text" id="userName" name="firstname" placeholder="Your name" />
+		</div> -->
+		<div class="clickLogin" id="loginBtn">PLAY</div>
+    
+	
+	</div>
+	<!-- Info screen -->
+	<div class="" id="work"  style="display:none">
+	<div class="fullscreen-bg">
+    <video poster="assets/images/videoframe.png" class="fullscreen-bg__video" id="videoCon"  src="assets/media/video/help.mp4">
+    </video>
+	
+	</div>
+	<div class="skipbtn" id="skipBtn">
+	</div>
+
+	</div>	
+	
+		 <div class="modal modalbg" id="readyPopup" role="dialog" style="display:none">
+    <div class="modal-dialog1 modal-dialog_btn modal-dialog_btn_wid">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+         <h2 class="text-center size" id="popupContent">This was the tutorial,</br>Now ready to play</br> game</h2>
+			
+        </div>
+       
+        <div class="modal-footer footbg footbgred">
+            <div class="about ready" id="readyOk">READY</div>
+           
+        </div>
+      </div>
+      
+    </div>
+	
+  </div>
+	<!-- level screen -->
+	<div class="wrapper levelScreen" id="levelScreen" style="display:none">
+		<div class="settingbtn">
+			<div class="settingicon" id="SettingIcon"><i class="fa fa-cog"></i></div>
+		</div>
+		<div class="leveldiv">
+			<ul id="differentLevels">
+				<!-- <li class="levels" data-level="0">CLASS 3</li> -->
+			</ul>
+		</div>
+		
+		<!--<div class="infobtn">
+			<div class="infoicon" id="helpBtn"><i class="fa fa-info"></i></div>
+		</div>-->
+    
+	
+	</div>
+
+	<div class="wrapper"  id="finalScreen" style="display:none">
+		 <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top"> 
+      <div class="container-fluid containerTop"> 
+        <div class="row">
+			<div class="col-xs-3 colPadd">
+				<div class="audio pull-left" id="speaker"> <i class="fa fa-volume-up"></i> </div>
+			</div>
+			<div class="col-xs-6 colPadd text-center"> 
+				<h2 class="title">Drag and drop the letters.</h2>
+				<div class="text-center score"> Score: <span id="score">00</span></div>
+			</div>
+			<div class="col-xs-3 colPadd">
+				<div class="pull-right">
+				<!--<div class="playPause pull-right" id="menuBtn"> <i class="fa fa-pause" ></i></div>-->
+					<div class="next pull-left" id="nextBtn"><i class="fa fa-arrow-right"></i> </div>
+					<!--<div class="onoffbtn pull-left"> 
+						 <img src="assets/images/offbtn.png" id="musicOff" class=""/>
+						<img src="assets/images/onbtn.png" id="musicOn" class=""/> 
+					</div>-->
+					<div class="quitgame pull-left" id="quitBtn"> <i class="fa fa-times" ></i></div> 
+				</div>
+			</div>
+		</div>
+       
+      </div>
+	  <div class="pull-right rightscore"> Question No. &nbsp; <span id="screenNo">1</span>/<span id="totalcount">100</span></div>
+    </nav>
+
+    <!-- Begin page content -->
+    <div class="container main">
+      <div class="dropTextArea">
+			<div class="quesNo">
+				<!-- Question No  <span id="quesNo">1</span> -->
+				<ol class="droptext" id="question">
+					
+				</ol>	
+			</div>
+      </div>
+     
+    </div>
+	<!--<div class="leftsec" id="thumbImage">
+		<img  src="assets/images/class3/abdomen.jpg" class="img-responsive imgresponsive"/>
+	</div>-->
+	<div class="rightsec" id="hint">
+		<div class="bulb"></div>
+		<h4>Help</h4>
+	</div>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row">
+			<!--<div class="col-xs-3 colPadd">
+			
+					<ul class="ant_syn">
+						<li id="antonym" class="ant">Antonyms</li>
+						<li id="synonym" class="sys">Synonyms</li>
+					</ul>
+			</div>-->
+			<div class="col-xs-12 colPadd" id="dragParent">
+				<div class="listalphabets" >
+					<ul>
+						<li><div>A</div></li>
+						<li><div>B</div></li>
+						<li><div>C</div></li>
+						<li><div>D</div></li>
+						<li><div>E</div></li>
+						<li><div>F</div></li>
+						<li><div>G</div></li>
+						<li><div>H</div></li>
+						<li><div>I</div></li>
+						<li><div>J</div></li>
+						<li><div>K</div></li>
+						<li><div>L</div></li>
+						<li><div>M</div></li>
+						<li><div>N</div></li>
+						<li><div>O</div></li>
+						<li><div>P</div></li>
+						<li><div>Q</div></li>
+						<li><div>R</div></li>
+						<li><div>S</div></li>
+						<li><div>T</div></li>
+						<li><div>U</div></li>
+						<li><div>V</div></li>
+						<li><div>W</div></li>
+						<li><div>X</div></li>
+						<li><div>Y</div></li>
+						<li><div>Z</div></li>
+					</ul>
+					</div>
+				
+				<!--<div class="listalphabets1 pull-right">
+					<ul class="">
+						
+						
+					</ul>
+				</div>-->
+			</div>
+		</div>
+      </div>
+    </footer>
+	
+	</div>
+	
+	<!-- Modal -->
+  <div class="modal" id="congratulations" role="dialog" style="display:none">
+    <div class="modal-dialog1 modal-dialog_congrats">
+    
+      <!-- Modal content-->
+      <div class="modal-content1">
+        <div class="modal-header">
+         
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <h1></h1>
+			<h3></h3>
+        </div>
+        <div class="modal-footer">
+            <h2 class="modal-title text-center"></h2>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- final popup -->
+    <div class="modal" id="resultPopup" role="dialog" style="display:none">
+    <div class="modal-dialog1 finaldialogue">
+    
+      <!-- Modal content-->
+      <div class="modal-content1 finalpopup text-center">
+        <div class="modal-header ">
+         <h2 id="playerName" class="usernametext"></h2>
+          <h3 class="white_text">Score: <span class="yellow_text" id="finalScore"></span></h3>
+		   <div class="about" id="playAgain">PLAY AGAIN</div>
+        </div>
+       
+       
+      </div>
+      
+    </div>
+  </div>
+  <!-- settiingModal -->
+  
+  <!--<div class="modal modalbg" id="menuPopup" role="dialog" style="display:none">
+    <div class="modal-dialog1 modalWidth ">
+    
+      
+      <div class="">
+        <div class="menus" >
+			<div class="modalclose" id="innerCloseBtn"></div>
+			<ul>
+				<li id="settingsBtn">SETTINGS</li>
+				<li id="menuIconBtn">HOME</li>
+				<li id="resumeBtn">RESUME</li>
+				<li id="quitBtn">QUIT</li>
+			</ul>
+		</div>
+      </div>
+      
+    </div>
+	
+  </div>-->
+     <!-- onoff content-->
+   <!--<div class="modal modalbg" id="sound" role="dialog" style="display:none">
+    <div class="modal-dialog1 modal-dialog_btn">
+    
+   
+      <div class="modal-content">
+	  <div class="modalclose" id="soundClose"></div>
+        <div class="modal-header headpadd">
+         
+			<div class="sounddiv pull-left">
+				
+				<div class="onoffbtn pull-right">
+					<img src="assets/images/offbtn.png" id="soundOff" class="img-responsive imgheight pull-left"/>
+					<img src="assets/images/onbtn.png" id="soundOn" class="img-responsive imgheight pull-right"/>
+				</div>
+				<div class="pull-right">SOUND</div>
+			</div>
+			<div class="sounddiv pull-left">
+				
+				<div class="onoffbtn pull-right">
+					<img src="assets/images/offbtn.png" id="musicOff" class="img-responsive imgheight pull-left"/>
+					<img src="assets/images/onbtn.png" id="musicOn" class="img-responsive imgheight pull-right"/>
+				</div>
+				<div class="pull-right">MUSIC</div>
+			</div>
+        </div>
+       
+        <div class="modal-footer footbg">
+            <div class="about" id="aboutBtn"><a href="http://www.macmillaneducation.in/" target="_blank" >ABOUT US</a></div>
+        </div>
+      </div>
+      
+    </div>
+	
+  </div>-->
+  <!-- quitscreen -->
+    <div class="modal modalbg" id="quitPopup" role="dialog" style="display:none">
+    <div class="modal-dialog1 modal-dialog_btn">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+         <h2 class="text-center"><b>Do You Want to Quit the Game?</b></h2>
+			
+        </div>
+       
+        <div class="modal-footer footbg">
+            <div class="quit pull-left" id="quitGameBtn">QUIT</div>
+            <div class="playing pull-right" id="keepPlayBtn">KEEP PLAYING</div>
+        </div>
+      </div>
+      
+    </div>
+	
+  </div>
+  	<!-- Modal -->
+  <div class="modal" id="fullImage" role="dialog" style="display:none">
+    <div class="modal-dialog_img imagemodal">
+	<div class="modalclose" id="fullImageClose"></div>
+    <img src="assets/images/class3/abdomen.jpg" class="imgresponsive imgcenterpopup"/>
+      <!-- Modal content-->
+      
+      
+    </div>
+  </div>
+  <!-- syn_ant screen -->
+    <div class="modal modalbg" id="meaningPopup" role="dialog" style="display:none">
+    <div class="modal-dialog1 modal-dialog_btn modal-dialog_btn_wid">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+         <h2 class="text-center" id="popupContent">Please complete the word</h2>
+			
+        </div>
+       
+        <div class="modal-footer footbg footbggreen">
+            <div class="about ok" id="closeOk">OK</div>
+           
+        </div>
+      </div>
+      
+    </div>
+	
+  </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="libs/jquery/jquery.min.js"></script>
+    <script src="libs/jquery/jquery-ui.js"></script>
+    <script src="libs/jquery/jquery_ui_touch_punch.js"></script>
+    <script src="libs/jquery/checkBrowser.js"></script>
+    <script src="libs/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/data/class3.js"></script> 
+	
+<!--<script src="js/services/ServiceLocator.js"></script>
+	<script src="js/model/DataManager.js"></script> -->
+	<script src="js/utils/StaticLibrary.js"></script>
+	
+	<script src="js/managers/AudioManager.js"></script>
+	<script src="js/managers/MusicManager.js"></script>
+ 
+<!--<script src="js/valueobjects/WordListVO.js"></script>
+	<script src="js/utils/DataParser.js"></script> -->
+	
+	<script src="js/controllers/LoginController.js"></script>
+	<script src="js/controllers/GameController.js"></script>
+<!-- <script src="js/services/APIService.js"></script> -->
+	
+<!--     <script src="js/start.js"></script> -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+.video-js .vjs-tech {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+body {
+	overflow: hidden;
+}
+
+.wooden-bg {
+	background-color: #000000;
+	background-image:url(../img/eReader_BG.png);
+	border-left: 1px #6158a0 solid;
+}
+
+.book-size {
+    width: 902px;
+    /* height: 1167px; */
+	height: 1163px;
+    border: none;
+}
+
+.book-viewport {
+	overflow: auto;
+	-webkit-transform-origin: top center;
+	-moz-transform-origin: top center;
+	-ms-transform-origin: top center;
+	-o-transform-origin: top center;
+	transform-origin: top center;
+}
+
+.middle-page {
+	position: relative;
+}
+
+#nprogress .bar {
+    z-index: 99999999;
+}
+
+.navbar-pagination {
+    margin-right: 0px;
+}
+
+.pagination-wrapper {
+    padding: 12px 12px 0px 0px;
+	margin-top: 6px;
+}
+
+#pageSearch {
+    width: 80px;
+    display: inline;
+	border:none;   
+    height: 36px;
+    background-color: #9C9C9C;
+    color: #fff;
+    vertical-align: bottom;
+    font-size: 17px;
+    padding: 0 5px;
+    position: relative;
+    top: 0px;
+    text-align: center;
+    border-radius: 5px;
+    line-height: 28px;
+    outline: none;
+}
+
+.head_text {
+    padding: 0 30px;
+    /*text-transform: uppercase;*/
+    letter-spacing: 1px;
+    font-size: 16px;
+    line-height: 32px;
+    color: #fff;
+}
+
+.tooltip.bottom {
+    z-index: 999999;
+}
+
+@font-face {
+font-family: "Roboto";
+src: url("fonts/Roboto-Regular.ttf");
+}
+
+#subject-head {
+    display: inline-block;
+    margin: 0px 0px 0px 10px;
+    color: #ffffff;
+    font-family: Roboto;
+	font-weight: bold;
+	font-size: 17px;
+    margin-right: 20px;
+}
+
+
+#class-level {
+	font-family: Roboto;
+    display: inline-block;
+    margin: 0px;
+    color: #ffffff;
+	font-size: 17px;
+}
+
+.navbar-headerbar {
+    padding: 10px 0px 10px 20px;
+    line-height: 35px;
+}
+
+#alert-009 {
+    position: fixed;
+    top: 78px;
+    right: 0px;
+    z-index: 9999999;
+}
+
+.bookmarkIcon{
+	width: 20px;
+	height: 20px;
+	border: 0;
+	border-radius: 1px;
+	background: url('../img/bookmark.png') no-repeat center;
+	position: absolute;
+	top: 60px;
+	right: 70px;
+	cursor:pointer;
+	z-index:100;
+}
+.bookmarkIcon.moveBookmark{
+	top: 0px;
+}
+
+.bookmarkIcon.booked{
+	width: 20px;
+	height: 40px;
+	border: 0;
+	border-radius: 1px;
+	background: url('../img/bookmark-active.png') no-repeat center;
+	position: absolute;
+}
+
+.duration5s {
+	animation-duration: .5s;
+}
+
+
+.searchlight {
+    position: absolute;
+    z-index: 100;
+    height: 300px;
+    width: 300px;
+    border-width: 100vh 100vw;
+    border-style: solid;
+    border-color: #000;
+    top: -100vh;
+    left: -100vw;
+    cursor: none;
+    background: #000;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -ms-box-sizing: content-box;
+    box-sizing: content-box;
+    z-index: 999999;
+}
+
+.searchlight.on {
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 60%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 60%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 60%,rgba(0,0,0,1) 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 60%,rgba(0,0,0,1) 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 60%,rgba(0,0,0,1) 100%); /* W3C */
+}
+
+.multi-view {
+    width: 1804px;
+    margin: auto;
+    height: 1167px;
+}
+
+.book-container, .multi-view {
+	-webkit-transform-origin: top left;
+	-moz-transform-origin: top left;
+	-ms-transform-origin: top left;
+	transform-origin: top left;
+}
+
+
+.fancybox-loading {
+    -ms-transform-origin: center center /* IE 9 */
+    -webkit-transform-origin: center center; /* Chrome, Safari, Opera */
+    transform-origin: center center;
+}
+
+.book-container {
+	margin: auto;
+}
+
+.multi-view {
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-ms-transition: all .2s ease;
+	transition: all .2s ease;
+}
+
+.tooltip.fade.in.right {
+    z-index: 9999;
+}
+
+.bg-notes {
+	background: #1a4673;
+}
+
+.margin-bottom-0 {
+	margin-bottom: 0px !important;
+}
+
+.book-viewport.single-view {
+	
+}
+
+.bordertop0 {
+	border-top: none !important;
+}
+
+button#stopRecord {}
+
+.btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary.active[disabled], fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
+    opacity: .2;
+}
+
+#search-box {
+   position: absolute;
+    width: 380px;
+    /* height: 100%; */
+    background: #FFF;
+    top: 0px;
+    left: 0px;
+    z-index: 999999999;
+    border-right: 1px solid #031930;
+    height: calc(100% - 0px);
+}
+
+.header-search h4 {
+    margin: 5px;
+    font-weight: 600;
+    color: #676a6c;
+}
+
+.header-search {
+    text-align: center;
+    min-height: 16.43px;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#search-box iframe {
+    height: 337px;
+}
+
+.search-wrapper {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+button.fancybox-button.fancybox-button--play {
+    display: none !important;
+}

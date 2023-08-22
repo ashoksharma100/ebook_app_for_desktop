@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Fill in the blanks</title>
+	 <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta name="author" content="Ashok Shah" />
+	<meta name="description" content="HTML5 True/False Interactivity" />
+	<meta name="keywords" content="html5, elearning, true/false" />
+	<meta name="website" content="https://www.shahnashok.com" />
+	<meta name="robots" content="index,follow" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	<link href="https://fonts.googleapis.com/css?family=Salsa" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	
+	<script src="js/data.js" type="text/javascript"></script>
+	<script src="js/keycode.js" type="text/javascript"></script>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="js/app.fib.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<div class="wrapper">
+	<div class="container">
+	
+		<header class="header">
+			<h2 class="title-h2" id="app-title"></h2>
+		</header>
+		
+		<section class="content">
+			<div class="body-container">
+			
+				<div class="question-n">
+				
+					<div class="sub-header">
+						<h4 class="title-h4" id="app-instruction"></h4>
+					</div>
+					
+					<div class="question-section">
+						<ol id="handler-bar">
+						</ol>
+
+						
+					</div>
+					
+				</div>
+				<div id="modal-feedback">
+					<p id="feedback-text" class="feedback-text">
+						<img src="img/character.png" />
+					</p>
+				</div>
+
+				<footer class="footer">
+					<div class="button-wrapper">
+						<button disabled class="btn btn-primary" id="btn-tryagain">Try Again</button>
+						<button disabled class="btn btn-primary" id="btn-reset">Reset</button>
+						<button disabled class="btn btn-primary" id="btn-done">Submit</button>
+						<button disabled class="btn btn-primary" id="btn-answers">Solution</button>
+						<!-- <button disabled class="btn btn-primary" id="btn-next">Next</button> -->
+						<!-- <button disabled class="btn btn-primary" id="btn-tryagain">Try Again</button> -->
+						<!-- <button disabled class="btn btn-primary" id="btn-answer">Answer</button> -->
+					</div>
+				</footer>
+				
+			</div>
+		</section>
+		
+	</div>
+</div>
+
+<!--
+<div class="modal" id="modal-feedback">
+	<div class="modal-container">
+		<div class="modal-content">
+			<p id="feedback-text" class="feedback-text"></p>
+		</div>
+
+	</div>
+</div>
+-->
+</body>
+</html>

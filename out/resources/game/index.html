@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Treasure Hunt Game</title> 
+
+     
+	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> -->
+    <link href="css/custom-animation.css" rel="stylesheet"> 
+    <link href="css/style.css" rel="stylesheet"> 
+	
+	<script type="text/javascript" src="lib/jquery/dist/jquery.js"></script> 
+	<script type="text/javascript" src="lib/taffydb/taffy-min.js"></script> 
+	<script type="text/javascript" src="lib/bootstrap-css/js/bootstrap.min.js"></script> 
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="js/timer.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+
+    <script type="text/javascript" src="script/soundmanager2.js"></script>
+    <script>
+		var mySounds;
+		var mySound = new Object();
+		soundManager.setup({
+		  useFlashBlock: true,		// optional - if used, required flashblock.css
+		  url: 'swf/',				// required: path to directory containing SM2 SWF files
+		  autoPlay: 'true',
+		  autoLoad: 'true',
+		  volume: '10',
+		  onready:function()
+		  {
+			mySound["hover"] = soundManager.createSound({volume: '100', url: 'audio/mouse_over.mp3', useFlashBlock: false});
+			mySound["click"] = soundManager.createSound({volume: '100', url: 'audio/mouse_over.mp3', useFlashBlock: false});
+			
+			/*	myInst = soundManager.createSound(
+			{
+				id: 'abcTemp1',
+				url: 'audio/lr3.mp3',
+				useFlashBlock: false
+			});	*/
+		
+			mySounds = soundManager.createSound(
+			{
+				id: 'aSound',
+				url: 'audio/background.mp3',
+				useFlashBlock: false,
+				onfinish: function()
+				{
+					mySounds.play();
+				}
+
+			});
+			
+			mySounds.play();
+		  }
+		  
+		});
+		
+		
+$(document).ready(function(e) {
+	
+	$('#iSoundMaker').show();
+	$('#iSoundMaker1').hide();
+	
+	$('#iSoundMaker').click(function(e)
+	{
+		soundManager.stopAll();
+		$('#iSoundMaker').hide();
+		$('#iSoundMaker1').show();
+    });
+	
+	$('#iSoundMaker1').click(function(e)
+	{
+		$('#iSoundMaker1').hide();
+		$('#iSoundMaker').show();
+			var mySound = soundManager.createSound(
+			{
+				id: 'aSound',
+				url: 'audio/background.mp3',
+			  useFlashBlock: false,
+				onfinish: function()
+				{
+					mySound.play();
+				}
+
+			});
+			
+			mySound.play();
+			
+
+    });
+	
+});
+	</script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+		<div id="gameplay-section">
+
+			<!-- instruction -->
+			<div class="startScreen">
+				<div class="gameTitle"><img src="img/gameTitle.png" /></div>
+				<div class="screen1-boy"><img src="img/boy.png" /></div>
+				<div class="clear"></div>
+			
+				<footer class="footer">
+					<div class="buttons">
+						<a href="#" id="beginLevel1" class="btn submit">Begin Level1</a>
+						<a href="#" class="btn submit" data-popup-open="popup-instr">Instructions</a>
+					</div>
+				</footer>
+			</div>
+		<!-- \\instruction -->
+		<div class="clear"></div>
+		
+		<div class="screen1">
+			<div class="walk1_video"></div>
+		</div>
+		<div class="clear"></div>
+		
+		<div class="screen2" id="gameplay-1">
+			<div class="level1_screen">
+				<header>
+					<div class="pull-left">
+						<div class="level-info"><span>Level:</span> <span class="current-level" id="current-level">0</span> </div>
+					</div>
+					<div class="pull-right">
+						<div class="life-info"><span>Chance:</span> <span class="current-life" id="total-life">0</span> </div>
+						<div class="timer"><span>Timer:</span> <span class="time timer-ui" id="timer-ui">10:00</span> </div>
+					</div>
+				</header>
+				<div class="clear"></div>
+				
+				<section class="content">
+					<div class="level1-locks" id="locks-wrapper">
+						<ul>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+						</ul>
+					</div>
+					<div class="items">
+						<div class="level1_item1"> </div>
+						<div class="level1_item2"> </div>
+						<div class="level1_item3"> </div>
+						<div class="level1_item4"> </div>
+						<div class="level1_item5"> </div>
+						<div class="level1_item6"> </div>
+						<div class="level1_item7"> </div>
+					</div>
+				</section>
+				<div class="clear"></div>
+				
+				<footer class="screen-footer">
+					<div class="question-section" id="question-section">
+						<h3 id="r-question" class="r-question">In a fissure eruption of a volcano, the lava comes out _________.</h3>
+						<div class="ans-options">
+							<ul id="r-options" class="r-options">
+								<li class="select">from the base of the volcano</li>
+								<li>from the sides of the volcano</li>
+								<li>from a crack or fissure in the volcano</li>
+								<li>from all around the volcano</li>
+							</ul>
+						</div>
+					</div>
+				</footer>
+				
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+
+		<div class="screen4" id="gameplay-2">
+			<div class="level2_screen">
+				<header>
+					<div class="pull-left">
+						<div class="level-info"><span>Level:</span> <span class="current-level">0</span> </div>
+					</div>
+					<div class="pull-right">
+						<div class="life-info"><span>Life:</span> <span class="current-life">0</span> </div>
+						<div class="timer"><span>Timer:</span> <span class="time timer-ui">10:00</span> </div>
+					</div>
+				</header>
+				<div class="clear"></div>
+				
+				<section class="content">
+					<div class="level2-locks">
+						<ul>
+							<li class="lock"></li>
+							<li class="lock"></li>
+							<li class="lock"></li>
+							<li class="lock"></li>
+							<li class="lock"></li>
+							<li class="lock"></li>
+							<li class="lock"></li>
+						</ul>
+					</div>
+					<div class="items">
+						<div class="level2_item1"> </div>
+						<div class="level2_item2"> </div>
+						<div class="level2_item3"></div>
+						<div class="level2_item4"></div>
+						<div class="level2_item5"></div>
+						<div class="level2_item6"></div>
+						<div class="level2_item7"></div>
+					</div>
+				</section>
+				<div class="clear"></div>
+				
+				<footer class="screen-footer">
+					<div class="question-section">
+						<h3 class="r-question">In a fissure eruption of a volcano, the lava comes out _________.</h3>
+						<div class="ans-options">
+							<ul class="r-options">
+								<li class="select">from the base of the volcano</li>
+								<li>from the sides of the volcano</li>
+								<li>from a crack or fissure in the volcano</li>
+								<li>from all around the volcano</li>
+							</ul>
+						</div>
+					</div>
+				</footer>
+				
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+
+
+		<!-- level 3 Questions -->
+		<div class="screen6" id="gameplay-3">
+			<div class="level3_screen">
+				<header>
+					<div class="pull-left">
+						<div class="level-info"><span>Level:</span> <span class="current-level">0</span> </div>
+					</div>
+					<div class="pull-right">
+						<div class="life-info"><span>Life:</span> <span class="current-life">0</span> </div>
+						<div class="timer"><span>Timer:</span> <span class="time timer-ui">10:00</span> </div>
+					</div>
+				</header>
+				<div class="clear"></div>
+				
+				<section class="content">
+					<div class="level3-locks">
+						<ul>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+							<li class="lock"> </li>
+						</ul>
+					</div>
+					<div class="items">
+						<div class="level3_item1"></div>
+						<div class="level3_item2"></div>
+						<div class="level3_item3"></div>
+						<div class="level3_item4"></div>
+						<div class="level3_item5"></div>
+						<div class="level3_item6"></div>
+						<div class="level3_item7"></div>
+					</div>
+				</section>
+				<div class="clear"></div>
+				
+				<footer class="screen-footer">
+					<div class="question-section">
+						<h3 class="r-question">In a fissure eruption of a volcano, the lava comes out _________.</h3>
+						<div class="ans-options">
+							<ul class="r-options">
+								<li class="select">from the base of the volcano</li>
+								<li>from the sides of the volcano</li>
+								<li>from a crack or fissure in the volcano</li>
+								<li>from all around the volcano</li>
+							</ul>
+						</div>
+					</div>
+				</footer>
+				
+			</div>
+		</div>
+
+		
+
+		</div>
+
+		<div class="videos-section">
+			<video id="video-level-1" class="hide">
+				<source src="video/Scene_1.ogv" type="video/ogg">
+				<source src="video/Scene_1.mp4" type="video/mp4">
+			</video>
+			<video id="video-level-2" class="hide">
+				<source src="video/Scene_2.ogv" type="video/ogg">
+				<source src="video/Scene_2.mp4" type="video/mp4">
+			</video>
+			<video id="video-level-3" class="hide">
+				<source src="video/Scene_3.ogv" type="video/ogg">
+				<source src="video/Scene_3.mp4" type="video/mp4">
+			</video>
+			<video id="video-level-4" class="hide">
+				<source src="video/Scene_4.ogv" type="video/ogg">
+				<source src="video/Scene_4.mp4" type="video/mp4">
+			</video>
+		</div>
+	</div>
+	
+
+
+	<!-- alert popup -->
+	
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-lostlife">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content"> 
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+			</div>
+			<div class="modal-body">
+				<img src="img/lost-life_alert.png" />
+			</div> 
+		</div> 
+	</div> 
+</div> 
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-lostlifeall">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content"> 
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+			</div>
+			<div class="modal-body">
+				<img src="img/lost-all-life_alert.png" />
+			</div> 
+		</div> 
+	</div> 
+</div> 
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-timeout">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content"> 
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+			</div>
+			<div class="modal-body">
+				<img src="img/time-run_alert.png" />
+			</div> 
+		</div> 
+	</div> 
+</div> 
+ 
+	
+	<!--\\alert popup -->
+	
+	<!-- level 3 -->
+	
+<div class="modal fade" tabindex="-1" role="dialog" data-popup="next-leve-1" id="modal-level1complete"> 
+	<div class="modal-dialog" role="document">
+		<div class="modal-content completeMsg"> 
+			<div class="modal-body">
+				<h2>Level 1 Completed</h2>
+			</div>
+			<div class="modal-footer"> 
+				<button type="button" class="btn btn-primary" onClick="showLevel(2)">Next Level</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+	  
+	
+	<!-- level 2-->
+<div class="modal fade" tabindex="-1" role="dialog" data-popup="next-level-2" id="modal-level2complete">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content completeMsg"> 
+			<div class="modal-body">
+				<h2>Level 2 Completed</h2>
+			</div>
+			<div class="modal-footer"> 
+				<button type="button" class="btn btn-primary" onClick="showLevel(3)">Next Level</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+	
+<!-- game over-->
+<div class="modal fade" tabindex="-1" role="dialog" data-popup="game-over"> 
+	<div class="modal-dialog" role="document">
+		<div class="modal-content completeMsg">  
+			<div class="modal-body">
+				<h2>Time out Game Over</h2>
+			</div>
+			<div class="modal-footer"> 
+				<button type="button" class="btn btn-primary" id="btn-restart">Restart</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal --> 
+	
+	
+	<!-- instruction popup -->
+	<div class="popup" data-popup="popup-instr"> 
+		<div class="popup-inner instr-bg"> 
+			<div class="instructions">
+				<p><b>Instructions</b></p>
+				<p>A Treasure was found on a lost ship in the middle of the sea. To find the treasure you must cross three levels. Each level has a door or a box with seven locks. To unlock the door or box at each level answer the question correctly to find keys hidden behind objects. Click on the key to unlock the door or box. Unlock all locks before the timer ends. Complete level before time to get the remaining time as bonus for next level. Beware! you have got only 3 lives to find the treasure. You will lose a life if you answer two questions incorrect consecutively.  Finish all three levels and become super rich by finding the hidden treasure.</p>
+				<p> Happy Treasure Hunting !! </p>
+			</div>
+			 
+			<a class="popup-close" data-popup-close="popup-instr" href="#">x</a>
+		</div>
+	</div>
+	
+	
+</body>
+
+</html>

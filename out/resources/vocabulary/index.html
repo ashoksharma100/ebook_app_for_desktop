@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+	<meta name="description" content="Vocabulary">
+	<meta name="web" content="https://www.shahnashok.com">
+	<meta name="author" content="Ashok Shah">
+	
+	<title>Vocabulary</title>
+
+	<link href="css/reset.css" rel="stylesheet">
+	<link href="lib/components-font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="lib/bootstrap-css/css/bootstrap.min.css" rel="stylesheet">
+	<link href="lib/lightgallery/dist/css/lightgallery.css" rel="stylesheet">
+	<link href="lib/sweetalert2/dist/sweetalert2.css" rel="stylesheet">
+	<link href="css/fonts.css" rel="stylesheet">
+	<link href="css/theme-a.css" rel="stylesheet" id="theme-style">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+
+<body class="full-height">
+
+    <div id="wrapper" class="toggled">
+		<div class="row height-100">
+			<div class="col-lg-4 col-md-5 col-sm-5 height-100 rightpadding0" id="frame-head">
+				<!-- Sidebar -->
+				<div id="sidebar-wrapper">
+					<div class="sidebar-wrapper-container">
+					
+						<!-- top bar -->
+						<div class="sidebar-top">
+							<div class="search-bar pull-left">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Search..." />
+									<div class="input-group-addon"><i class="fa fa-search"></i></div>
+								</div>
+							</div>
+							<div class="top-icon recent_icon pull-left text-center">
+								<div class="recent_file-container" id="recent_list">
+									<img src="img/recent_file.png" alt="" title="" />
+									<p class="fig-caption">Recent List</p>
+								</div>
+							</div>
+							<!--<div class="top-icon favs-bar pull-left text-center">
+								<div class="favourite-container favourite-disabled" id="favourite_list">
+									<img src="img/favourites.png" alt="" title="Favourites" />
+									<p class="fig-caption">Favourites</p>
+								</div>
+							</div>-->
+							<!--<div class="top-icon favs-bar text-center info-icon-wrap">
+								<div class="" id="info-icon-top" data-backdrop="static" data-toggle="modal" data-target="#pictionary">
+									<div class="list-sp-icon"><i class="fa fa-info" aria-hidden="true"></i></div>
+									<p class="fig-caption">Info</p>
+								</div>
+							</div>
+							<div class="top-icon favs-bar text-center info-icon-wrap">
+								<div class="" id="info-icon-top" data-backdrop="static" data-toggle="modal" data-target="#theme">
+									<div class="list-sp-icon"><i class="fa fa-paint-brush" aria-hidden="true"></i></div>
+									<p class="fig-caption">Theme</p>
+								</div>
+							</div>-->
+
+							<div class="clearfix"></div>
+						</div>
+						<!-- /top bar -->
+						
+						<div class="words-section">
+							
+							<div class="letters-container noselect">
+								<span id="up" class="nav"><i class='fa fa-chevron-up'></i></span>
+								<ul class="letters" id="letters-list"></ul>
+								<span id="down" class="nav"><i class='fa fa-chevron-down'></i></span>
+							</div>
+							
+							
+							<div class="words-container">
+								<ul class="words" id="display_words">
+								</ul>
+							</div>
+							
+							<div class="clearfix"></div>
+						</div>
+						
+						
+					</div>
+				</div>
+				<!-- /#sidebar-wrapper -->
+			</div>
+			
+			
+			<div class="col-lg-8 col-md-7 col-sm-7 height-100" id="frame-body">
+				 <!-- Page Content -->
+					<div id="page-content-wrapper">
+						<div class="content-data">
+							<div class="height-100">
+								<div class="word-view height-60">
+									<div class="row height-100">
+										<div class="col-xs-12 height-100">
+
+
+											<div class="fab-menu">  
+												<button type="button" class="menu-icon" data-toggle="collapse" data-target="#menu"><i class="fa fa-list-ul"></i> <span>Menu</span></button>
+												<div id="menu" class="collapse">
+													<ul class="nav nav-tabs"> 
+														<li data-toggle="modal" data-backdrop="static" data-target="#pictionary"><a role="button" href="#"><span><i class="fa fa-info" aria-hidden="true"></i></span> Info</a></li>
+														<li data-toggle="modal" data-backdrop="static" data-target="#theme"><a role="button" href="#"><span><i class="fa fa-paint-brush" aria-hidden="true"></i></span> Themes</a></li>
+														<li data-toggle="modal" data-backdrop="static" data-target="#quit" id="btn-quit-app"><a role="button" href="#"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span> Quit</a></li> 
+													</ul>
+												</div>
+											</div>
+
+											<div class="word-graphics-view">
+												<div class="word-graphics-box">
+													<div class="image-container">
+														<div class="word_img">
+																<img id="view-image" src="resources/images/accident.jpg" class="full-width" />
+														</div>
+														<div id="light-box-wrapper">
+															<a id="full-screen-image" href="resources/images/accident.jpg">
+																<img src="img/Expand_Icon.PNG" />
+															</a>
+														</div>
+													</div>
+													<div class="video-container">
+														<div class="word_video">
+														</div>
+														<div>
+															<div class="video-play" id="btn-video-play"><a class="fa fa-play"></a></div>
+
+															<div class="video-progress-top" id="video-slider-bar">
+																<div id="video-slider" class="video-progress-status theme-bg"></div>
+															</div>
+														</div>
+														<a id="full-screen-video" href="#">
+															<img src="img/Expand_Icon.PNG" />
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="word-info height-40">
+									<div class="row height-100">
+										<div class="col-xs-12 height-100">
+											<div class="panel panel-default panel-app height-100" id="info-desk">
+												<div class="panel-heading">
+													<span id="data-word"></span> <!--<span id="data-speech"></span>-->
+													<span class="wrap_button_mobile">	
+														<span class="audioicon" id="play_audio"><i class="fa fa-volume-up"></i></span>
+														<span class="audioicon" id="record_audio"><i class="fa fa-microphone"></i></span>
+													</span>
+													
+													
+													
+													<!--<div class="favicon" id="add_fav" set-data="0">
+														<span>Add to<br/>&nbsp;Favourites</span> <i class="fa fa-star-o"></i>
+													</div>-->
+												</div>
+												<div class="panel-body">
+												
+													<div class="meaning-section">
+														<h2 class="heading-info">Meaning</h2>
+														<h4 class="desc-info"></h4>
+													</div>
+													
+													<div class="usage-section">
+														<h2 class="heading-info">Usage</h2>
+														<h4 class="desc-info"></h4>
+													</div>
+													
+													<div class="antonyms-section">
+														<h2 class="heading-info">Antonyms</h2>
+														<h4 class="desc-info"></h4>
+													</div>
+													
+													<div class="synonyms-section">
+														<h2 class="heading-info">Synonyms</h2>
+														<h4 class="desc-info"></h4>
+													</div>
+													
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /#page-content-wrapper -->
+			</div>
+		</div>
+       
+
+    </div>
+    <!-- /#wrapper -->
+	
+	
+	<!-- pictionary Modal -->
+<div class="modal fade" id="pictionary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Welcome to Pictionary</h4>
+				<p>A picture dictionary that helps you learn in a faster and an easier way</p>
+      </div>
+      <div class="modal-body">
+        <div class="instructions">
+					<p>Here you will see that all the words are listed in the alphabetical order (A-Z). When you click on a word under any alphabet, you will not just find its <span>Meaning</span> but also its <span>Part of Speech</span>, correct <span>pronunciation</span>, <span>Synonyms</span>, <span>Antonyms</span> and <span>Picture</span>. You will also learn how to use the word correctly in a sentence under <span>usage</span>. Use of animations for some words will help you learn faster. You can add words to your <span>Favourites</span> list to view later. You can also search for a word using the <span>Search</span> bar.</p>
+					
+					<ul>
+						<li>Click <span><i class="fa fa-volume-up"></i></span> to listen to the audio of the pronunciation of the word.</li>
+						<li>Click <span><i class="fa fa-play"></i></span> to watch the animation of the word.</li>
+						<li>Click <span><i class="fa fa-paint-brush"></i></span> to change the theme.</li>
+						<li>Click <span><i class="fa fa-star"></i></span> (near <span><i class="fa fa-volume-up"></i></span>) to add the word to the list of Favourites.</li>
+						<li>Click <span><i class="fa fa-star"></i></span> (near the Search bar) to view the Favourites list.</li>
+						<li>Click <span><i class="fa fa-arrows-alt"></i></span> to enlarge the related picture. To exit the full screen mode, click <span><i class="fa fa-compress"></i></span>.</li>
+
+						<li>Click <span><i class="fa fa-microphone"></i></span> to record audio of a word and check its correct pronunciation.</li>
+						<li>Click <span class="theme-c"><img class="recent-info" src="img/recent_a.png"/></span><span class="theme-a theme-b"><img class="recent-info" src="img/recent_b.png"/></span> to list down the recent words looked up.</li>
+						<li>Click <span><i class="fa fa-sign-out"></i></span> to exit the Pictionary.</li>
+					</ul>
+				</div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+<!-- theme Modal -->
+<div class="modal fade" id="theme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <!--<h4 class="modal-title" id="myModalLabel"> </h4>-->
+      </div>
+      <div class="modal-body">
+        <div class="theme_buttons">
+			<button type="button" id="btn_a" class="btn btn-default theme-btn active">Default</button>
+			<button type="button" id="btn_b" class="btn btn-default theme-btn">Theme 1</button>
+			<button type="button" id="btn_c" class="btn btn-default theme-btn">Theme 2</button>
+		</div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+<!-- quit Modal -->
+<div class="modal fade" id="quit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"> 
+      <div class="modal-body">
+        <div class="quitMsg"> 
+			<h2>Do you really want to quit?</h2>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default quit-btn" onClick="quitBrowswer()">Yes</button>
+        <button type="button" class="btn btn-default quit-btn" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- audio recorder -->
+<div class="modal fade" id="audio-recorder-modal" tabindex="-1" role="dialog" aria-labelledby="audiorecorderlabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="">Record Audio</h4>
+      </div>
+      <div class="modal-body">
+        <div class="recorder-section">
+			<div class="container-audio">
+				<div class="row">
+
+					<div class="col-sm-6 text-center">
+						<button type="button" id="audio-expert" class="btn btn-default">Expert Audio</button>
+					</div>
+					<div class="col-sm-6 text-center">
+						<button type="button" id="audio-record-user" class="btn btn-default">Record Audio</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="expert-container">
+							<!--<div class="text-voice">Expert</div>-->
+							<div style="display: none;">
+                            	<div id="expert-voice"></div>
+                            </div>
+						</div>
+						<div class="user-container" style="display: none;">
+							<div class="text-voice">Recording</div>
+							<div id="user-voice"></div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="audio-container">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+<div class="hide">
+	<audio id="mouse-click">
+		<source src="audio/correct_sound.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="mouse-over">
+		<source src="audio/mouse_over.mp3" type="audio/mpeg">
+	</audio>
+</div>
+
+<!--<div class="loading-bar" id="loading-bar">
+	<div class="loading-widnow">
+		<img src="img/loading.svg" alt="" />
+	</div>
+</div>-->
+
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src="lib/taffydb/taffy-min.js"></script>
+<script src="lib/bootstrap-css/js/bootstrap.min.js"></script>
+<script src="lib/lightgallery/dist/js/lightgallery.min.js"></script>
+<script src="lib/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="lib/sweetalert2/dist/sweetalert2.js"></script>
+<script src="lib/wavesurfer.js/dist/wavesurfer.js"></script>
+<script src="js/base64.min.js"></script>
+
+<script src="js/config.js"></script>
+<script src="js/WordInfo.js"></script>
+<script src="js/app.dictionary.js"></script>
+
+<!-- mobile app only 
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="cordova_plugins.js"></script>
+<script type="text/javascript" src="js/index.js"></script>	
+ /mobile app only -->
+
+</body>
+
+</html>

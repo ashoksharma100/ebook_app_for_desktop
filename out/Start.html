@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebook Reader</title>
+
+	<link rel="icon" type="image/png" href="img/favicon.png" sizes="192x192">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="js/plugins/fancybox/jquery.fancybox.min.css" />
+	
+	<link rel="stylesheet" href="js/plugins/nprogress/nprogress.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/turn.custom.css" />
+    <link rel="stylesheet" href="css/readerApp.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+	<link href="js/plugins/jPlayer-2.9.2/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
+	
+	<script src="js/modernizr.min.js" type="text/javascript"></script>
+</head>
+
+<body class="">
+
+<div id="wrapper">
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse" id="side-menu-wrapper">
+		<!-- dynamic menu loads from js -->
+    </div>
+</nav>
+
+<div id="page-wrapper" class="wooden-bg">
+
+<div class="row border-bottom">
+    <nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0" id="topbar-section">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-bars"></i> </a>
+
+        </div>
+		<div class="navbar-header navbar-right navbar-pagination tooltip-demo">
+			<div class="pagination-wrapper">
+				<span class="head_text"><span class="pgNo">Page No </span>
+				<input class="page-search-input" type="text" value="" name="pageSearch" onblur="readerApp.setPageNumBack()" onfocus="readerApp.clearPagi()" id="pageSearch" onKeyUp="readerApp.navigatePage(event)" data-toggle="tooltip" data-placement="bottom" title="Enter Page no."> 
+				/
+				<span id="totalPages"></span></span>
+			</div>
+		</div>
+
+		 <div class="navbar-header navbar-right">
+            <form role="search" class="navbar-form-custom search-bar" action="javascript: readerApp.searchContent();">
+                <div class="form-group">
+					<div class="input-group">
+						 <input type="text" placeholder="Search" class="form-control" name="top-search" id="top-search">
+						<div class="input-group-addon"><i class="fa fa-search"></i></div>
+					</div>
+                   
+                </div>
+            </form>
+        </div> 
+
+		<div class="navbar-header navbar-headerbar">
+			<div class="saraswati_logo"><img src="img/saraswatihouse-logo.jpg" /></div>
+			<h2 id="subject-head"></h2>
+			<h4 id="class-level"></h4>
+		</div>
+		
+
+            <ul class="nav navbar-top-links navbar-right shortBarMenu">
+				<!--
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Bookmarks</span>
+                </li>
+                -->
+                <li class="dropdown" data-tooltip="tooltip" data-placement="right" title="Bookmarks">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bookmark"></i> <span class="label label-primary" id="total-bookmarks">0</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts animated slideInRight duration5s" id="bookmark-container">
+
+                    </ul>
+                </li>
+                <li class="dropdown" data-tooltip="tooltip" data-placement="right" title="Highlights">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-pencil-square"></i> <span class="label label-primary" id="total-highlights">0</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts animated slideInRight duration5s" id="highlights-containers">
+						
+                    </ul>
+                </li>
+                <li class="dropdown" data-tooltip="tooltip" data-placement="right" title="Notes">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-sticky-note"></i> <span class="label label-primary" id="total-notes">0</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts animated slideInRight duration5s" id="notes-containers">
+						
+                    </ul>
+                </li>
+                <li class="dropdown" data-tooltip="tooltip" data-placement="right" title="Audio Recordings">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-microphone"></i> <span class="label label-primary" id="total-recordings">0</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts animated slideInRight duration5s" id="recordings-containers">
+						<li id="no-recording-info">
+							<div class="text-center link-block">
+								<strong>No Recordings Yet.</strong>
+								<i class="fa fa-angle-right"></i>
+							</div>
+						</li>
+						<li>
+							<div class="ibox-content bordertop0">
+								<table class="table">
+									<tbody id="record-list">
+
+									</tbody>
+								</table>
+							</div>
+						</li>
+                    </ul>
+                </li>
+
+            </ul>
+
+
+    </nav>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight not-selectable">
+
+
+	<div id="book-wrapper" class="transition">
+		<div id="book-viewport">
+			<div class="book-container" id="book-container">
+				<div id="book">
+					<div class="cover"><img src="resources/book/file-page1.jpg" /></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="prev_next_buttons">
+		<button id="ebook-prev" data-tooltip="tooltip" data-placement="top" title="Previous"><i class="fa fa-chevron-circle-left"></i></button>
+        <button id="ebook-next" data-tooltip="tooltip" data-placement="top" title="" data-original-title="Next"><i class="fa fa-chevron-circle-right"></i></button>
+	</div>
+	
+</div>
+
+<!-- <div class="footer" id="app-footer">
+	<div class="text-center">
+        <button data-toggle="modal" data-target="#record-audio" id="btn-record-audio">Audio Recorder</button>
+        <button data-toggle="modal" data-target="#notes-addition" id="ebook-addnote">Add Note</button>
+        <button id="ebook-prev">Previous</button>
+        <button id="ebook-next">Next</button>
+        <button onClick="readerApp.zoom.max();">Zoom In</button>
+        <button onClick="readerApp.zoom.min();">Zoom Out</button>
+        <button onClick="readerApp.toggleBookMode();"><span id="ebookModeLabel" data-modeOn="Single Mode" data-modeOFF="Double Mode">Single Mode</span></button>
+        <button onClick="readerApp.zoom.resizeBook();">Fit To Screen</button>
+        <button data-toggle="modal" data-target="#spotlight-selection-menu">Spotlight</button>
+        <button onClick="readerApp.toggleMusic();"><span id="musiclabel" data-musicON="Music off" data-musicOFF="Music on">Music off</span></button>
+        <button data-toggle="modal" data-target="#credits-info">Credits</button>
+	</div>
+</div> -->
+
+<div class="footer footer_icons fixed">
+	<div class="text-center">
+        <button onClick="readerApp.showAudioPanel()" id="btn-record-audio" data-tooltip="tooltip" data-placement="top" title="Audio Recorder"> <i class="fa fa-microphone"></i> </button>
+        <button data-toggle="modal" data-target="#notes-addition" id="ebook-addnote" data-tooltip="tooltip" data-placement="top" title="Add Notes"><i class="fa fa-pencil-square-o"></i></button>
+        
+        <button onclick="readerApp.zoom.max();" data-tooltip="tooltip" data-placement="top" title="Zoom In"><i class="fa fa-search-plus"></i></button>
+        <button onclick="readerApp.zoom.min();" data-tooltip="tooltip" data-placement="top" title="Zoom Out"><i class="fa fa-search-minus"></i></button>
+		
+		<!-- multi view -->
+        <button style="display: none;" id="toggle_multi_on" onclick="readerApp.toggleBookMode();" data-tooltip="tooltip" data-placement="top" title="Mode"><span id=""></span><i class="fa fa-columns"></i></button>
+        <button id="toggle_multi_off" onclick="readerApp.toggleBookMode();" data-tooltip="tooltip" data-placement="top" title="Mode"><span id=""></span><i class="fa fa-window-maximize"></i></button>
+		<!-- /multi view -->
+		
+         <button onclick="readerApp.zoom.resizeBook();" data-tooltip="tooltip" data-placement="top" title="Fit To Screen"><i class="fa fa-arrows-alt"></i></button> 
+        <button data-toggle="modal" data-target="#spotlight-selection-menu" data-tooltip="tooltip" data-placement="top" title="Spotlight"><i class="fa fa-sun-o"></i></button>
+		
+		<!-- music controls -->
+        <button id="music_controls_off" onclick="readerApp.toggleMusic();" data-tooltip="tooltip" data-placement="top" title="Background Music"><span id=""></span><i class="fa fa-volume-off"></i></button>
+        <button style="display: none;" id="music_controls_on" onclick="readerApp.toggleMusic();" data-tooltip="tooltip" data-placement="top" title="Background Music"><span id=""></span><i class="fa fa-music"></i></button>
+		<!-- /music controls -->
+		
+		<button data-toggle="modal" onclick="readerApp.draw.toggleTools()" data-tooltip="tooltip" data-placement="top" title="Pen and Highlight"><i class="fa fa-pencil"></i></button>
+
+		<!-- <button data-toggle="modal" data-target="#credits-info" data-tooltip="tooltip" data-placement="top" title="Credits"><i class="fa fa-user-circle"></i></button>
+		 -->
+		<button data-toggle="modal" data-target="#savedata" data-tooltip="tooltip" data-placement="top" title="Clear Data"><i class="fa fa-trash"></i></button>
+
+		<!--  <button data-toggle="modal" data-target="#exitapp" data-tooltip="tooltip" data-placement="top" title="Exit"><i class="fa fa-sign-out"></i></button>  -->
+	</div>
+</div>
+
+
+</div>
+</div>
+
+<div id="takeBookmark" class="bookmarkIcon" data-tooltip="tooltip" data-placement="bottom" title="Click to place bookmark"></div>
+
+<div id="popupVideo" class="popupVideo" style="display: none;">
+
+	<div id="video-container">
+
+
+	</div>
+	<!--
+	<video id="animation-video" class="video-js" controls preload="auto" width="590" height="400" data-setup="{}">
+		<source src="resources/animations/3.Granny_Adjective_1.ogv" type="video/ogv">
+		<p class="vjs-no-js">
+			To view this video please enable JavaScript, and consider upgrading to a web browser that
+			<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+		</p>
+	</video>
+
+	-->
+</div>
+
+<div class="modal inmodal" id="spotlight-selection-menu" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	<div class="modal-content animated bounceInRight">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				
+				<div class="text-center">
+					<h4>Please select spotlight size</h4>
+				</div>
+				<small class="font-bold">Once spotlight is activated, click anywhere to exit the spotlight.</small>
+			</div>
+			<div class="modal-body spotlight-selection">
+				<div class="row text-center">
+					<div class="col-sm-4">
+					
+						<a href="#" onClick="readerApp.spotight.activate('150', '150')">
+							<div class="spotlight-box">
+								<div class="spotlight-sample spotlight-small"></div>
+							</div>
+							<h3>Small</h3>
+						</a>
+					</div>
+					<div class="col-sm-4">
+						<a href="#" onClick="readerApp.spotight.activate('250', '250')">
+							<div class="spotlight-box">
+								<div class="spotlight-sample spotlight-medium"></div>
+							</div>
+							<h3>Medium</h3>
+						</a>
+					</div>
+					<div class="col-sm-4">
+						<a href="#" onClick="readerApp.spotight.activate('400', '400')">
+							<div class="spotlight-box">
+								<div class="spotlight-sample spotlight-large"></div>
+							</div>
+							<h3>Large</h3>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal inmodal" id="credits-info" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	<div class="modal-content animated bounceInRight">
+			<!--<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				 
+			</div>-->
+			<div class="modal-body">
+				<img src="img/Credits.jpg" /> 
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal inmodal" id="savedata" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	<div class="modal-content animated bounceInRight">
+
+			<div class="modal-header">
+				<h4 class="modal-title">Clear Data</h4>
+			</div>
+			<!--<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				 
+			</div>-->
+			<div class="modal-body">
+				
+				<div>
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td style="width: 83%">Everything</td>
+								<td><button type="button" onclick="clearData('all')" class="btn btn-danger">Delete</button></td>
+							</tr>
+							<tr>
+								<td>Bookmarks</td>
+								<td><button type="button" onclick="clearData('bookmarks')" class="btn btn-danger">Delete</button></td>
+							</tr>
+							<tr>
+								<td>Highlights</td>
+								<td><button type="button" onclick="clearData('highlights')" class="btn btn-danger">Delete</button></td>
+							</tr>
+							<tr>
+								<td>Notes</td>
+								<td><button type="button" onclick="clearData('notes')" class="btn btn-danger">Delete</button></td>
+							</tr>
+							<tr>
+								<td>Audio Recordings</td>
+								<td><button type="button" onclick="clearData('audio')" class="btn btn-danger">Delete</button></td>
+							</tr>
+						</tbody>
+					</table>
+					<p class="alert alert-info" id="msg-data-remove">Please restart Ebook App once you clear any data.</p>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" onclick="javascript:window.location.reload();">Restart</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal inmodal" id="exitapp" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	<div class="modal-content animated bounceInRight">
+
+			<div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">Exit</h4>
+				
+				
+			</div>
+			<div class="modal-header">
+				 
+			</div>
+			<div class="modal-body">
+				
+				<div>
+					<h2>Are you sure you want to exit?</h2>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" onclick="javascript:window.close();">Yes</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="notes-addition" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	<div class="modal-content animated bounceInDown">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				
+				<div class="text-center">
+					<h4>Add note</h4>
+				</div>
+				
+			</div>
+			<div class="modal-body bg-notes">
+				<form role="form">
+					<select class="form-control m-b pages-list-inner" name="notes-pages" id="notes-pages"></select>
+					<textarea rows="10" class="form-control" placeholder="Enter your notes description" id="textarea-note" name="textarea-note"></textarea>
+				</form>
+				
+				<br/>
+				<div class="alert alert-danger margin-bottom-0 hide" id="notes-validation">
+					Please enter notes description before you save.
+				</div>
+			</div>
+			<div class="modal-footer">
+			
+				
+				<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onClick="readerApp.saveNote()">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="notes-preview" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	<div class="modal-content animated bounceInDown">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				
+				<div class="text-center">
+					<h4>Preview note</h4>
+				</div>
+				
+			</div>
+			<div class="modal-body bg-notes">
+				<form role="form">
+					<select class="form-control m-b pages-list-inner hide" name="notes-pages" id="notes-pages-preview"></select>
+					<textarea rows="10" class="form-control" placeholder="Enter your notes description" id="textarea-note-preview" name="textarea-note"></textarea>
+				</form>
+
+				<div class="alert alert-danger margin-bottom-0 hide" id="notes-validation-preview">
+					Please enter notes description before you save.
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-danger" onClick="removeNote()">Delete</button>
+				<button type="button" class="btn btn-primary" onClick="updateNote()">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="record-audio animated slideInLeft" id="record-audio" tabindex="-1">
+	<div class="record-audio-container">
+		<div class="modal-header">
+			<button onClick="readerApp.closeAudio()" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			
+			<div class="text-center">
+				<h4>Record Audio</h4>
+			</div>
+			
+		</div>
+		<div class="modal-body">
+			<div class="hide" id="recorder-area">
+				<select class="form-control m-b pages-list-inner" id="record-pages-list" name="record-pages-list"></select>
+				<div class="">
+					<button class="btn btn-primary record_icon" id="startRecord" data-tooltip="tooltip" data-placement="bottom" title="" data-original-title="Record"><i class="fa fa-microphone"></i></button>
+					<button class="btn btn-primary record_icon" id="stopRecord" data-tooltip="tooltip" data-placement="bottom" title="Stop" disabled=""><i class="fa fa-stop"></i></button>
+				</div>
+					
+				<br/><br/>
+				<!-- 
+				<div class="ibox-content bordertop0">
+					<table class="table">
+						<tbody id="record-list">
+						</tbody>
+					</table>
+				</div>
+				-->
+			</div>
+			
+			<div class="hide" id="recorder-support">
+				<div class="alert alert-warning">
+					Audio Recorder feature is not supported. Please use latest version of chrome/firefox.
+				</div>
+			</div>
+			
+			<div class="hide" id="recorder-info">
+				<div class="alert alert-info">
+					Please allow permission for accessing microphone.
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- error alert for invalid page -->
+<div id="alert-009" class="hide animated slideInRight">
+	<div class="alert alert-danger">
+		
+	</div>
+</div>
+<!-- /error alert for invalid page -->
+
+
+<div id="search-box" class="hide animated slideInLeft">
+	<div class="header-search">
+		<button onClick="readerApp.closeSearch()" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<h4>Search</h4>
+	</div>
+	<div class="search-wrapper">
+		<iframe src="search.html" id="search-frame" width="100%" height="100%" frameborder="0"></iframe>
+	</div>
+</div> 
+
+<div id="drawing-tools" class="drawing-tools animated slideInLeft duration02s">
+	<div class="drawing-tools-container">
+		<div class="drawing-tools-header">
+			<div class="close-btn-drawing">
+				<button onClick="readerApp.draw.hideTools()" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			</div>
+			<h4 class="tools-title">Tools</h4>
+		</div>
+		<div class="tools">
+			<span class="pnt-tool" onClick="readerApp.draw.selectTool('show-tools-2', this)" data-tooltip="tooltip" data-placement="right" title="Click and drag to use the free hand tool."><i class="fa fa-pencil"></i> Pen</span>
+			<span class="pnt-tool" onClick="readerApp.draw.selectTool('show-tools-1', this)" data-tooltip="tooltip" data-placement="right" title="Click and drag to highlight any portion."><i class="fa fa-square-o"></i> Highlight</span>
+			<span class="pnt-tool" onClick="readerApp.draw.undo();" data-tooltip="tooltip" data-placement="right" title="Click to undo highlight."><i class="fa fa-undo"></i> Undo</span>
+			<span class="pnt-tool" onClick="readerApp.draw.clear();" data-tooltip="tooltip" data-placement="right" title="Click to clear the highlights"><i class="fa fa-trash"></i> Clear</span>
+
+
+			<select class="pnt-tool" id="color-selection">
+				<option value="rgba(0, 0, 255, 0.5)"></option>
+				<option value="rgba(0, 255, 0, 0.5)"></option>
+				<option value="rgba(255, 0, 0, 0.5)"></option>
+			</select>
+			<!--
+			<span class="pnt-tool" title="Eraser"><i class="fa fa-eraser"></i></span>
+			<span class="pnt-tool" id="colorpickerHolder" title="Color">
+				<button id="pnt-color-select" class="jscolor {position:'left', value:'01bd06', valueElement:'valueInput', styleElement:'pnt-color-select'}"></button>
+				<div class="hide">
+					<input id="valueInput" value="01bd06"><br>
+				</div>
+			</span>
+			-->
+			
+		</div>
+		
+		<div class="select-pageselection">
+			<label for="tools-pageselection">
+				Page Selection
+			</label>
+			<select id="tools-pageselection">
+				<option value="2">Page 2</option>
+				<option value="3">Page 3</option>
+			</select>
+			
+		</div>
+
+	</div>
+</div>
+
+<div class="hide">
+	<a id="fancy-iframe" data-type="iframe" data-height="800" data-width="800" data-src="resources/interactivities/1.2/index.html" data-fancysize="800x600" class="iframe-fancybox" href="javascript:void(0)"></a>
+	<a id="fancy-video" data-video-mp4="resources/animations/3_Granny_Adjective_1.ogv" data-src="#popupVideo" class="video-fancybox" href="javascript:void(0)"></a>
+</div>
+
+<div id="app-preloader">
+	<div class="preloader-container"> <button onclick="SkipFunction()" type="button" class="button_skip" align="right"><span>Skip</span></button>
+		<!-- <video src="video/intro.mp4" width="100%" height="100%" autoplay="autoplay" controlsList="nodownload"></video> -->
+		<video id='int_vid' width="100%" height="100%" playsinline autoplay muted loop>
+        	<source src="video/intro.ogv"  type='video/ogg; codecs="theora, vorbis"'></source>
+        	Your browser doesn't support video
+        </video>
+		<!--<img src="img/preloader-books.gif" />-->
+	</div>
+	
+</div>
+
+
+
+<script src="data/config.js"></script>
+<script src="data/page.js"></script>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/jquery-ui-1.10.4.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/turn.min.js"></script>
+<script src="js/dragscroll.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/plugins/jPlayer-2.9.2/jplayer/jquery.jplayer.min.js" type="text/javascript"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="js/plugins/nprogress/nprogress.js"></script>
+<script src="js/plugins/soundmanagerv297a-20150601/script/soundmanager2-nodebug-jsmin.js"></script>
+<script src="js/plugins/fancybox/jquery.fancybox.min.js"></script>
+
+<script src="js/inspinia.js"></script>
+<script src="js/jscolor.js"></script>
+<script src="js/app.js"></script>
+<script src="js/app.notes.js"></script>
+<script src="js/turn.custom.js"></script>
+
+
+</body>
+</html>
